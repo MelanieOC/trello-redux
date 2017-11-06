@@ -1,14 +1,14 @@
-#signUp{
+.sign{
   padding: 0 50px;
   margin: 20px 0;
 }
-#signUp input{
+.sign input{
   border: none;
   padding: 1em;
   font-size: 1.1em;
 }
 
-#signUp button{
+.sign button{
   width: 100%;
   margin: 0;
   padding: 1em;
@@ -19,8 +19,8 @@
   margin-top: 10px;
 }
 
-#signUp button:hover{
-  background: white;
+.sign button:hover{
+  background: rgb(247, 239, 239);
   color: #0079BF;
   transition: all 0.15s;
 }

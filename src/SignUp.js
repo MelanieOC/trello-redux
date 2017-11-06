@@ -9,21 +9,21 @@ const SignUp =()=>{
       <div align='center'>
         <div style={{ width: '450px',marginTop:'20px' }}>
           <Image src={logo} width='200px'/>
-          <form id='signUp'>
+          <form className='sign'>
             <FormGroup bsSize='large'>
-              <FormControl type="text" placeholder="First Name" />
+              <FormControl type="text" placeholder="First Name" required/>
             </FormGroup>
             <FormGroup bsSize="large">
-              <FormControl type="text" placeholder="Last Name" />
+              <FormControl type="text" placeholder="Last Name" required/>
             </FormGroup>
             <FormGroup>
-              <FormControl type="text" placeholder="Email" />
+              <FormControl type="email" placeholder="Email" required/>
             </FormGroup>
             <FormGroup bsSize='large'>
-              <FormControl type="text" placeholder="Password" />
+              <FormControl type="password" placeholder="Password" required/>
             </FormGroup>
             <FormGroup bsSize='large'>
-              <FormControl type="text" placeholder="Confirm password" />
+              <FormControl type="password" placeholder="Confirm password" required/>
             </FormGroup>
             <Button type='submit'>Sign Up</Button>
           </form>
