@@ -1,6 +1,6 @@
 import React  from 'react';
 import './SignUp.css';
-import logo from './trello-logo-white.svg';
+import logo from '../trello-logo-white.svg';
 import { FormControl, FormGroup, Image, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 

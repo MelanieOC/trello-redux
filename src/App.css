@@ -11,15 +11,17 @@ body {
 #titulo{
   width: 100%;
   background-color: #0067A3;
-  height: 90px;
+  line-height: 2.7em;
+  padding: 0 1.5em;
+  color: #fff;
+  position: relative;
   text-align: center;
-  color: white;
-  font-size: 0.8em;
-  font-weight: 600;
-  margin: 0;
-  padding: 0;
 }
-
+#titulo img{
+  margin-top: 5px;
+  height: 32px;
+  width: 110px;
+}
 /*Seccion contenido*/
 #contenido{
   margin-top: 20px;
