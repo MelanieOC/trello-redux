@@ -1,28 +1,140 @@
-.App {
+body {
+  background-color: #0079BF;
+  padding: 5px;
+  font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
+  color: #393939;
+  margin: 0;
+  padding: 0;
+}
+#signUp{
+  padding: 0 50px;
+  margin: 20px 0;
+}
+#signUp input{
+  border: none;
+  padding: 1em;
+  font-size: 1.1em;
+}
+
+#signUp button{
+  width: 100%;
+  margin: 0;
+  padding: 1em;
+  font-size: 1.1em;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  margin-top: 10px;
+}
+
+#signUp button:hover{
+  background: white;
+  color: #0079BF;
+  transition: all 0.15s;
+}
+a {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1em;
+  text-decoration: none;
+}
+/*Seccion titulo*/
+#titulo{
+  width: 100%;
+  background-color: #0067A3;
+  height: 90px;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
   color: white;
+  font-size: 0.8em;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
 }
 
-.App-title {
-  font-size: 1.5em;
+/*Seccion contenido*/
+#contenido{
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  overflow: auto;
 }
 
-.App-intro {
-  font-size: large;
+/*boton añadir lista*/
+.empezar{
+  margin: 5px 20px;
+  padding: 10px;
+  background-color: #006BA9;
+  text-align: left;
+  color: #B3D3E5;
+  display: inline-block;
+  width: 17em;
+  border-radius: 5px;
+}
+.empezar:hover {
+  background-color: #005586;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/*Seccion lista*/
+.lista {
+  background-color: #E3E3E3;
+  border-radius: 10px;
+  margin: 0 15px;
+  padding: 10px;
+  width: 17em;
+  display: inline-block;
+}
+
+.lista h3{
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+  cursor: grab;
+}
+
+/*boton añadir tarjeta*/
+.añadir{
+  color: gray;
+  cursor: pointer;
+  margin: 15px 0;
+}
+
+/*formulario*/
+button {
+  padding: 10px;
+  margin: 0 5px;
+  background-color: #5BAE45;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.eliminar{
+  background-color: transparent;
+  width: 10px;
+  border: none;
+  padding: 0;
+  color: gray;
+}
+
+input{
+  width: 92%;
+  margin: 0.3em 0;
+  padding: 0.3em;
+  border-radius: 5px;
+  height: 2em;
+}
+
+/*cada tarea agregada*/
+.tarea {
+  background-color: #FFF;
+  border-bottom: 1px solid #CCC;
+  border-radius: 5px;
+  padding: 6px 8px;
+  margin: 2px 0;
+}
+
+.tarea:hover {
+  background-color: #F0F0F0;
 }
