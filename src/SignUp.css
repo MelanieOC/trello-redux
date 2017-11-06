@@ -1,0 +1,32 @@
+#signUp{
+  padding: 0 50px;
+  margin: 20px 0;
+}
+#signUp input{
+  border: none;
+  padding: 1em;
+  font-size: 1.1em;
+}
+
+#signUp button{
+  width: 100%;
+  margin: 0;
+  padding: 1em;
+  font-size: 1.1em;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  margin-top: 10px;
+}
+
+#signUp button:hover{
+  background: white;
+  color: #0079BF;
+  transition: all 0.15s;
+}
+a {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1em;
+  text-decoration: none;
+}
