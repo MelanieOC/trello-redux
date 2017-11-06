@@ -10,6 +10,7 @@ body {
 /*Seccion titulo*/
 #titulo{
   width: 100%;
+  display: flex;
   background-color: #0067A3;
   line-height: 2.7em;
   padding: 0 1.5em;
@@ -18,6 +19,8 @@ body {
   text-align: center;
 }
 #titulo img{
+  align-self: center;
+  justify-self: center;
   margin-top: 5px;
   height: 32px;
   width: 110px;
