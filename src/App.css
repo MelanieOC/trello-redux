@@ -41,7 +41,6 @@ body {
 
 .tarea{
   width: 100%;
-  cursor: pointer;
   background: rgba(222, 225, 227, 0.9);
   border-radius: 3px;
   margin: 0 0.5em 1em 0.5em;
@@ -63,14 +62,27 @@ body {
   padding: 8px;
   margin-bottom: 8px;
 }
-.canvas-wrapper {
-  position: relative;
-  height: 500px;
+.addNew{
+  margin: -0.75em;
+  margin-top: 0.75em;
+  padding: 0.5em 0.75em;
+  color: #797a7c;
+  border-radius: 0 0 3px 3px;
+  cursor: pointer;
 }
-.canvas {
-  overflow-x: auto;
-  overflow-y: hidden;
+.addNew:hover{
+  color: #696a6d;
+  background-color: rgba(200, 204, 206, 0.9);
 }
+.cancel{
+  color: rgb(90, 164, 194);
+  cursor: pointer;
+}
+
+.cancel:hover{
+  color: rgb(76, 146, 173);
+}
+
 /*Seccion contenido*/
 #contenido{
   margin-top: 20px;

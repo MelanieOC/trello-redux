@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignUp from './Componentes/SignUp.js';
 import SignIn from './Componentes/SignIn.js';
 import logo from './trello-logo-white.svg';
-import { Image, Grid, Row, Col } from 'react-bootstrap';
+import { Image, Grid, Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap';
 import data from './data.js';
 import './App.css';
 const Header = () => {
@@ -28,7 +28,6 @@ const Header = () => {
   );
 }
 const Boards = () => {
-  const probando = ['hola', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   return (
     <Grid id='boards'>
       <h3>
@@ -53,37 +52,75 @@ const Boards = () => {
     </Grid>
   );
 }
-class BoardDetail extends Component {
-  render(){
-    const { board } = this.props;
-    return(
-      <Grid>
-        <h3>
-          {board.name}
-        </h3>
-        <div className='canvas'>
-          <div >
-        {
-          Object.keys(board.tarjetas).map(item=>{
-            const value = board.tarjetas[item];
-            return(
-              <div style={{width:'350px', marginRight:'10px', display:'inline-block'}}>
-                <div className='tarea'>
-                    <h4>{item}</h4>
-                    {
-                      value.map(a=><div className='tareal'>{a}</div>)
-                    }
-                  </div>
+class Tarjeta extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      add: false
+    }
+  }
+
+  render() {
+    const { tarjeta, tareas } = this.props;
+    const change = () => {
+      this.setState({
+        add: !this.state.add
+      })
+    }
+    return (
+      <div style={{ width: '350px', marginRight: '10px', display:'inline-block' }}>
+        <div className='tarea'>
+          <h4>{tarjeta}</h4>
+          {
+            tareas.map(a => <div className='tareal'>{a}</div>)
+          }
+          {
+            this.state.add ?
+              <div>
+                <form>
+                  <FormGroup controlId="formControlsTextarea">
+                    <FormControl componentClass="textarea" placeholder="textarea" />
+                  </FormGroup>
+                </form>
+                <div>
+                  <Button onClick={change} >Add</Button>
+                  or <span className='cancel' onClick={change}>cancel</span>
+                </div>
               </div>
-            );
-          })
-        }
+              :
+              <div className='addNew' onClick={change}>
+                Add a New Card...
+              </div>
+          }
+
         </div>
-        </div>
-        </Grid>
+      </div>
     );
   }
 }
+
+const BoardDetail = ({ board }) => {
+  return (
+    <Grid>
+      <h3>
+        {board.name}
+      </h3>
+      <div className='canvas'>
+        <div style={{ overflowX: 'auto' }}>
+          {
+            Object.keys(board.tarjetas).map(item => {
+              const value = board.tarjetas[item];
+              return (
+                <Tarjeta tarjeta={item} tareas={value} />
+              );
+            })
+          }
+        </div>
+      </div>
+    </Grid>
+  );
+}
+
 class App extends Component {
   render() {
     return (
