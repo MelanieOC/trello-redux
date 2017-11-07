@@ -5,6 +5,7 @@ import logo from './trello-logo-white.svg';
 import { Image, Grid, Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap';
 import data from './data.js';
 import './App.css';
+
 const Header = () => {
   return (
     <header id='titulo'>
