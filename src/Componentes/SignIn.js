@@ -18,7 +18,7 @@ const SignIn =()=>{
             </FormGroup>
             <Button type='submit'>Sign In</Button>
           </form>
-          <a href='#'>Create a new account</a>
+          <a className='hola' href='#'>Create a new account</a>
         </div>
       </div>
     );

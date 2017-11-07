@@ -1,8 +1,6 @@
 body {
   background-color: #0079BF;
-  padding: 5px;
   font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
-  color: #393939;
   margin: 0;
   padding: 0;
 }
@@ -10,20 +8,68 @@ body {
 /*Seccion titulo*/
 #titulo{
   width: 100%;
-  display: flex;
   background-color: #0067A3;
   line-height: 2.7em;
   padding: 0 1.5em;
   color: #fff;
-  position: relative;
-  text-align: center;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 #titulo img{
-  align-self: center;
-  justify-self: center;
   margin-top: 5px;
   height: 32px;
   width: 110px;
+}
+#titulo a{
+  background-color: rgba(0, 124, 191, 0.452);
+  text-decoration: none;
+  color: white;
+  border-radius: 3px;
+  padding: .3em .5em;
+  line-height: 1em;
+  margin-left: 10px;
+}
+#titulo a span{
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#titulo a:hover span{
+  color: white;
+}
+
+.tarea{
+  width: 100%;
+  cursor: pointer;
+  background: rgba(222, 225, 227, 0.9);
+  border-radius: 3px;
+  margin: 0 0.5em 1em 0.5em;
+  line-height: 1.75em;
+  padding: 0.75em;
+  min-height: 5em;
+}
+#boards h3{
+  color: white;
+  margin-bottom: 30px;
+}
+#boards a{
+  text-decoration: none;
+  color: black;
+}
+.tareal{
+  background-color: white;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+.canvas-wrapper {
+  position: relative;
+  height: 500px;
+}
+.canvas {
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 /*Seccion contenido*/
 #contenido{
@@ -92,23 +138,6 @@ button {
   color: gray;
 }
 
-input{
-  width: 92%;
-  margin: 0.3em 0;
-  padding: 0.3em;
-  border-radius: 5px;
-  height: 2em;
-}
 
 /*cada tarea agregada*/
-.tarea {
-  background-color: #FFF;
-  border-bottom: 1px solid #CCC;
-  border-radius: 5px;
-  padding: 6px 8px;
-  margin: 2px 0;
-}
 
-.tarea:hover {
-  background-color: #F0F0F0;
-}

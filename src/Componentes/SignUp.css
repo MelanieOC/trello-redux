@@ -24,7 +24,7 @@
   color: #0079BF;
   transition: all 0.15s;
 }
-a {
+.hola {
   background-color: transparent;
   color: rgba(255, 255, 255, 0.5);
   font-size: 1.1em;

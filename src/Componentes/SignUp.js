@@ -27,7 +27,7 @@ const SignUp =()=>{
             </FormGroup>
             <Button type='submit'>Sign Up</Button>
           </form>
-          <a href='#'>Sign in</a>
+          <a className='hola' href='#'>Sign in</a>
         </div>
       </div>
     );
