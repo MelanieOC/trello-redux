@@ -85,10 +85,9 @@ body {
 
 /*Seccion contenido*/
 #contenido{
-  margin-top: 20px;
   display: flex;
-  align-items: flex-start;
-  overflow: auto;
+  overflow-x:auto;
+  white-space: nowrap;
 }
 
 /*boton añadir lista*/

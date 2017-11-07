@@ -68,7 +68,7 @@ class Tarjeta extends Component {
       })
     }
     return (
-      <div style={{ width: '350px', marginRight: '10px', display:'inline-block' }}>
+      <div style={{ width: '350px', marginRight: '10px' }}>
         <div className='tarea'>
           <h4>{tarjeta}</h4>
           {
@@ -106,7 +106,7 @@ const BoardDetail = ({ board }) => {
         {board.name}
       </h3>
       <div className='canvas'>
-        <div style={{ overflowX: 'auto' }}>
+        <div id='contenido'>
           {
             Object.keys(board.tarjetas).map(item => {
               const value = board.tarjetas[item];
