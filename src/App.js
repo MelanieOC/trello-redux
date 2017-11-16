@@ -1,6 +1,6 @@
 import React from 'react';
-//import SignUp from './Componentes/SignUp.js';
-//import SignIn from './Componentes/SignIn.js';
+import SignUp from './Componentes/SignUp.js';
+import SignIn from './Componentes/SignIn.js';
 import logo from './trello-logo-white.svg';
 import { Image } from 'react-bootstrap';
 import { Boards, BoardDetail } from './Boards';
@@ -12,20 +12,20 @@ const Header = () => {
   return (
     <header id='titulo'>
       <span>
-        <a href='#'>
+        <NavLink to='/boards'>
           <i class="fa fa-columns" aria-hidden="true"></i>
           <span> Boards</span>
-        </a>
+        </NavLink>
       </span>
       <Image src={logo} width='200px' />
       <span>
-        <a href='#'>
+        <NavLink href='#'>
           <span> User</span>
-        </a>
-        <a href='#'>
+        </NavLink>
+        <NavLink to='/signin'>
           <i class="fa fa-sign-out" aria-hidden="true"></i>
           <span> Sign Out</span>
-        </a>
+        </NavLink>
       </span>
     </header>
   );
@@ -35,20 +35,29 @@ const Header = () => {
 const App = ({ boards }) => {
   return (
     <BrowserRouter>
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" render={() => <Boards array={boards} />} />
-          {
-            boards.map((item, index) => {
-              const path = "/boards/" + (index + 1) + '-' + item.name;
-              return <Route path={path} render={() => <BoardDetail board={boards[index]} />}
-              />
-            })
-          }
-          <Route render={() => <Redirect to="/" />} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route path='/signup' component={SignUp}/>
+        <Route path='/signin' component={SignIn}/>
+        <Route path="/boards" render={() => (
+          <div>
+            <Header />
+            <Boards array={boards} />
+          </div>
+        )} />
+        {
+          boards.map((item, index) => {
+            const path = "/boards/" + (index + 1) + '-' + item.name;
+            return <Route path={path} render={() => (
+              <div>
+                <Header />
+                <BoardDetail board={boards[index]} />
+              </div>
+            )}
+            />
+          })
+        }
+        <Route render={() => <Redirect to="/signin" />} />
+      </Switch>
     </BrowserRouter>
   )
 }
