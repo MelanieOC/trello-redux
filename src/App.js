@@ -28,6 +28,45 @@ const Header = () => {
     </header>
   );
 }
+class AddButton extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      add: false
+    }
+  }
+  render() {
+    const { tarjeta, board, message } = this.props;
+    const change = () => {
+      this.setState({
+        add: !this.state.add
+      })
+    }
+
+    return (
+      <div className={tarjeta ? 'tarjeta' : ''}>
+        {
+          this.state.add ?
+            <div className={tarjeta ? 'tarea' : ''}>
+              <form>
+                <FormGroup controlId="formControlsTextarea">
+                  <FormControl componentClass="textarea" placeholder={message} />
+                </FormGroup>
+              </form>
+              <div>
+                <Button onClick={change} >{tarjeta ? 'Save List' : 'Add'}</Button>
+                or <span className='cancel' onClick={change}>cancel</span>
+              </div>
+            </div>
+            :
+            <div className='addNew' onClick={change}>
+              {message}
+            </div>
+        }
+      </div>
+    )
+  }
+}
 const Boards = () => {
   return (
     <Grid id='boards'>
@@ -53,70 +92,37 @@ const Boards = () => {
     </Grid>
   );
 }
-class Tarjeta extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      add: false
-    }
-  }
+const Tarjeta = ({ tarjeta, tareas }) => {
+  return (
+    <div className='tarjeta'>
+      <div className='tarea'>
+        <h4>{tarjeta}</h4>
+        {
+          tareas.map(a => <div className='tareal'>{a}</div>)
+        }
 
-  render() {
-    const { tarjeta, tareas } = this.props;
-    const change = () => {
-      this.setState({
-        add: !this.state.add
-      })
-    }
-    return (
-      <div style={{ width: '350px', marginRight: '10px' }}>
-        <div className='tarea'>
-          <h4>{tarjeta}</h4>
-          {
-            tareas.map(a => <div className='tareal'>{a}</div>)
-          }
-          {
-            this.state.add ?
-              <div>
-                <form>
-                  <FormGroup controlId="formControlsTextarea">
-                    <FormControl componentClass="textarea" placeholder="textarea" />
-                  </FormGroup>
-                </form>
-                <div>
-                  <Button onClick={change} >Add</Button>
-                  or <span className='cancel' onClick={change}>cancel</span>
-                </div>
-              </div>
-              :
-              <div className='addNew' onClick={change}>
-                Add a New Card...
-              </div>
-          }
-
-        </div>
+        <AddButton message='Add a New Card...' />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const BoardDetail = ({ board }) => {
   return (
-    <Grid>
-      <h3>
+    <Grid >
+      <h3 style={{ marginTop: '60px' }}>
         {board.name}
       </h3>
-      <div className='canvas'>
-        <div id='contenido'>
-          {
-            Object.keys(board.tarjetas).map(item => {
-              const value = board.tarjetas[item];
-              return (
-                <Tarjeta tarjeta={item} tareas={value} />
-              );
-            })
-          }
-        </div>
+      <div id='contenido'>
+        {
+          Object.keys(board.tarjetas).map(item => {
+            const value = board.tarjetas[item];
+            return (
+              <Tarjeta tarjeta={item} tareas={value} />
+            );
+          })
+        }
+        <AddButton message='Add a New List...' tarjeta />
       </div>
     </Grid>
   );
