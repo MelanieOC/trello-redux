@@ -93,6 +93,19 @@ body {
   min-width: 300px;
   margin: 0 10px;
 }
+.tarea.addNew {
+  transition: all 0.15s ease-out 0s;
+  background: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  color: #bdc3c7;
+  margin:0;
+}
+#boards .tarea.addNew{
+  margin: 0 0.5em 1em 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /*boton añadir lista*/
 .empezar{
   margin: 5px 20px;

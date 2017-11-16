@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import SignUp from './Componentes/SignUp.js';
-import SignIn from './Componentes/SignIn.js';
+import React from 'react';
+//import SignUp from './Componentes/SignUp.js';
+//import SignIn from './Componentes/SignIn.js';
 import logo from './trello-logo-white.svg';
-import { Image, Grid, Row, Col, FormControl, FormGroup, Button } from 'react-bootstrap';
-import data from './data.js';
+import { Image } from 'react-bootstrap';
+import { Boards, BoardDetail } from './Boards';
+import { connect } from 'redux-zero/react';
 import './App.css';
+import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -28,116 +30,29 @@ const Header = () => {
     </header>
   );
 }
-class AddButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      add: false
-    }
-  }
-  render() {
-    const { tarjeta, board, message } = this.props;
-    const change = () => {
-      this.setState({
-        add: !this.state.add
-      })
-    }
 
-    return (
-      <div className={tarjeta ? 'tarjeta' : ''}>
-        {
-          this.state.add ?
-            <div className={tarjeta ? 'tarea' : ''}>
-              <form>
-                <FormGroup controlId="formControlsTextarea">
-                  <FormControl componentClass="textarea" placeholder={message} />
-                </FormGroup>
-              </form>
-              <div>
-                <Button onClick={change} >{tarjeta ? 'Save List' : 'Add'}</Button>
-                or <span className='cancel' onClick={change}>cancel</span>
-              </div>
-            </div>
-            :
-            <div className='addNew' onClick={change}>
-              {message}
-            </div>
-        }
-      </div>
-    )
-  }
-}
-const Boards = () => {
+
+const App = ({ boards }) => {
   return (
-    <Grid id='boards'>
-      <h3>
-        <i class="fa fa-user"></i>
-        <span> My boards</span>
-      </h3>
-      <Row>
-        {
-          data.map((item, index) => {
-            return (
-              <Col md={3} key={index}>
-                <a href='#'>
-                  <div className='tarea'>
-                    <h4>{item.name}</h4>
-                  </div>
-                </a>
-              </Col>
-            );
-          })
-        }
-      </Row>
-    </Grid>
-  );
-}
-const Tarjeta = ({ tarjeta, tareas }) => {
-  return (
-    <div className='tarjeta'>
-      <div className='tarea'>
-        <h4>{tarjeta}</h4>
-        {
-          tareas.map(a => <div className='tareal'>{a}</div>)
-        }
-
-        <AddButton message='Add a New Card...' />
-      </div>
-    </div>
-  );
-}
-
-const BoardDetail = ({ board }) => {
-  return (
-    <Grid >
-      <h3 style={{ marginTop: '60px' }}>
-        {board.name}
-      </h3>
-      <div id='contenido'>
-        {
-          Object.keys(board.tarjetas).map(item => {
-            const value = board.tarjetas[item];
-            return (
-              <Tarjeta tarjeta={item} tareas={value} />
-            );
-          })
-        }
-        <AddButton message='Add a New List...' tarjeta />
-      </div>
-    </Grid>
-  );
-}
-
-class App extends Component {
-  render() {
-    return (
+    <BrowserRouter>
       <div>
         <Header />
-        <BoardDetail board={data[0]} />
+        <Switch>
+          <Route exact path="/" render={() => <Boards array={boards} />} />
+          {
+            boards.map((item, index) => {
+              const path = "/boards/" + (index + 1) + '-' + item.name;
+              return <Route path={path} render={() => <BoardDetail board={boards[index]} />}
+              />
+            })
+          }
+          <Route render={() => <Redirect to="/" />} />
+        </Switch>
       </div>
-    )
-  }
+    </BrowserRouter>
+  )
 }
 //<NavLink to='#'>Sign in</NavLink>
-
-export default App;
+//<BoardDetail board={data[0]} />
+const mapToProps = ({ boards }) => ({ boards });
+export default connect(mapToProps)(App);
