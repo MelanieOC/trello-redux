@@ -25,7 +25,7 @@ const SignUp =()=>{
             <FormGroup bsSize='large'>
               <FormControl type="password" placeholder="Confirm password" required/>
             </FormGroup>
-            <NavLink to='/signup' className='btn'>Sign Up</NavLink>
+            <NavLink to='/' className='btn'>Sign Up</NavLink>
           </form>
           <NavLink className='hola' to='/signin'>Sign in</NavLink>
         </div>
