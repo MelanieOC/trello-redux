@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Button } from 'react-bootstrap';
+import { addCard, addBoard, addList } from './actions';
+
 
 class AddButton extends Component {
   constructor(props) {
@@ -9,7 +11,9 @@ class AddButton extends Component {
     }
   }
   render() {
-    const { tarjeta, board } = this.props;
+    const { tarjeta, board, card } = this.props;
+    const funcion = tarjeta ? addList : board ? addBoard : addCard;
+    const parametro = board?'':tarjeta?tarjeta:card;
     const change = () => {
       this.setState({
         add: !this.state.add
@@ -24,11 +28,17 @@ class AddButton extends Component {
             <div className={tarjeta || board ? 'tarea' : ''}>
               <form>
                 <FormGroup controlId="formControlsTextarea">
-                  <FormControl componentClass="textarea" placeholder={holder} />
+                  <FormControl
+                    componentClass="textarea"
+                    placeholder={holder}
+                    inputRef={ref => { this.input = ref; }} />
                 </FormGroup>
               </form>
               <div>
-                <Button onClick={change} >{tarjeta ? 'Save List' : board ? 'Create Board' : 'Add'}</Button>
+                <Button onClick={() => {
+                  funcion(this.input.value,parametro);
+                  change();
+                }} >{tarjeta ? 'Save List' : board ? 'Create Board' : 'Add'}</Button>
                 or <span className='cancel' onClick={change}>cancel</span>
               </div>
             </div>

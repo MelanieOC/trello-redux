@@ -31,16 +31,6 @@ const App = ({ boards }) => {
 }
 //<NavLink to='#'>Sign in</NavLink>
 //<BoardDetail board={data[0]} />
-/*<Switch>
-          <Route exact path="/" render={() => <Boards array={boards} />} />
-          {
-            boards.map((item, index) => {
-              const path = "/boards/" + (index + 1) + '-' + item.name;
-              return <Route path={path} render={() => <BoardDetail board={boards[index]} />}
-              />
-            })
-          }
-          <Route render={() => <Redirect to="/" />} />
-        </Switch> */
+
 const mapToProps = ({ boards }) => ({ boards });
 export default connect(mapToProps)(App);

@@ -30,7 +30,7 @@ const Header = () => {
 export const Boards = ({ array }) => {
     return (
         <div>
-                    <Header />
+            <Header />
             <Grid id='boards'>
                 <h3 style={{ marginTop: '60px' }}>
                     <i class="fa fa-user"></i>
@@ -64,16 +64,16 @@ export const Boards = ({ array }) => {
                                             <h4>{item.name}</h4>
                                         </div>
                                     </NavLink> */
-const Tarjeta = ({ tarjeta, tareas }) => {
+const Tarjeta = ({ tarjeta }) => {
     return (
         <div className='tarjeta'>
             <div className='tarea'>
-                <h4>{tarjeta}</h4>
+                <h4>{tarjeta.card}</h4>
                 {
-                    tareas.map(a => <div className='tareal'>{a}</div>)
+                    tarjeta.stages.map(a => <div className='tareal'>{a}</div>)
                 }
 
-                <AddButton />
+                <AddButton card={tarjeta.card} />
             </div>
         </div>
     );
@@ -82,21 +82,20 @@ const Tarjeta = ({ tarjeta, tareas }) => {
 export const BoardDetail = ({ board }) => {
     return (
         <div>
-        <Header />
+            <Header />
             <Grid >
                 <h3 style={{ marginTop: '60px' }}>
                     {board.name}
                 </h3>
                 <div id='contenido'>
                     {
-                        Object.keys(board.tarjetas).map(item => {
-                            const value = board.tarjetas[item];
+                        board.tarjetas.map((item, index) => {
                             return (
-                                <Tarjeta tarjeta={item} tareas={value} />
+                                <Tarjeta tarjeta={item} key={index} />
                             );
                         })
                     }
-                    <AddButton tarjeta />
+                    <AddButton tarjeta={board} />
                 </div>
             </Grid>
         </div>
