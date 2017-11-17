@@ -11,7 +11,7 @@ class AddButton extends Component {
     }
   }
   render() {
-    const { tarjeta, board, card } = this.props;
+    const { tarjeta, board, card, boardId } = this.props;
     const funcion = tarjeta ? addList : board ? addBoard : addCard;
     const parametro = board?'':tarjeta?tarjeta:card;
     const change = () => {
@@ -36,7 +36,7 @@ class AddButton extends Component {
               </form>
               <div>
                 <Button onClick={() => {
-                  funcion(this.input.value,parametro);
+                  card?funcion(this.input.value,boardId,parametro):funcion(this.input.value,parametro);
                   change();
                 }} >{tarjeta ? 'Save List' : board ? 'Create Board' : 'Add'}</Button>
                 or <span className='cancel' onClick={change}>cancel</span>

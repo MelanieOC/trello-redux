@@ -6,17 +6,13 @@ export const addBoard = (value)=>{
     console.log(value);
     boards.push({
         name: value,
-        tarjetas:{
-
-        }
+        tarjetas:[]
     })
     store.setState({
         boards: boards
     })
 }
 export const addList = (value,list)=>{
-    console.log(value);
-    
     let boards = [...store.getState().boards];
     let newList = boards.map(a=>{
         if(a.name===list.name){
@@ -29,8 +25,20 @@ export const addList = (value,list)=>{
     })
     
 }
-export const addCard = (value,card)=>{
-    console.log(value);
-    console.log(card);
-    
+export const addCard = (value,list,card)=>{
+    let boards = [...store.getState().boards];
+    let newList = boards.map(a=>{
+        if(a.name===list.name){
+            a.tarjetas.map(b=>{
+               if(b.card===card){
+                   b.stages.push(value);
+               }
+               return b;
+            });
+        }
+        return a;
+    })
+    store.setState({
+        boards: newList
+    })
 }

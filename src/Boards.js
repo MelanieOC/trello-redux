@@ -64,7 +64,7 @@ export const Boards = ({ array }) => {
                                             <h4>{item.name}</h4>
                                         </div>
                                     </NavLink> */
-const Tarjeta = ({ tarjeta }) => {
+const Tarjeta = ({ tarjeta, board }) => {
     return (
         <div className='tarjeta'>
             <div className='tarea'>
@@ -73,7 +73,7 @@ const Tarjeta = ({ tarjeta }) => {
                     tarjeta.stages.map(a => <div className='tareal'>{a}</div>)
                 }
 
-                <AddButton card={tarjeta.card} />
+                <AddButton card={tarjeta.card} boardId={board}/>
             </div>
         </div>
     );
@@ -91,7 +91,7 @@ export const BoardDetail = ({ board }) => {
                     {
                         board.tarjetas.map((item, index) => {
                             return (
-                                <Tarjeta tarjeta={item} key={index} />
+                                <Tarjeta tarjeta={item} key={index} board={board} />
                             );
                         })
                     }
