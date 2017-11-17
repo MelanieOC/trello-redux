@@ -12,11 +12,11 @@ const App = ({ boards }) => {
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path='/signin' component={SignIn}/>
-          <Route path='/signup' component={SignUp}/>
+          <Route path='/signin' component={SignIn} />
+          <Route path='/signup' component={SignUp} />
           <Route exact path="/boards" render={() => <Boards array={boards} />} />
           {
-            boards.map((item, index) => {
+            boards && boards.map((item, index) => {
               const path = "/boards/" + (index + 1) + '-' + item.name;
               return <Route path={path} render={() => <BoardDetail board={boards[index]} />}
               />

@@ -2,7 +2,8 @@ import createStore from 'redux-zero';
 import data from './data.js';
 
 const initialState = {
-    boards: data
+    user:'user',
+    boards:[]
 }
 
 const store = createStore(initialState);

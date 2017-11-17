@@ -38,7 +38,7 @@ export const Boards = ({ array }) => {
                 </h3>
                 <Row>
                     {
-                        array.map((item, index) => {
+                        array && array.map((item, index) => {
                             const path = "/boards/" + (index + 1) + '-' + item.name;
                             return (
                                 <Col md={3} sm={3} xs={3} key={index}>
@@ -68,12 +68,17 @@ const Tarjeta = ({ tarjeta, board }) => {
     return (
         <div className='tarjeta'>
             <div className='tarea'>
-                <h4>{tarjeta.card}</h4>
                 {
-                    tarjeta.stages.map(a => <div className='tareal'>{a}</div>)
+                    tarjeta &&
+                    <div>
+                        <h4>{tarjeta.card}</h4>
+                        {
+                            tarjeta.stages && tarjeta.stages.map(a => <div className='tareal'>{a}</div>)
+                        }
+                    </div>
                 }
 
-                <AddButton card={tarjeta.card} boardId={board}/>
+                <AddButton card={tarjeta.card} boardId={board} />
             </div>
         </div>
     );
@@ -89,7 +94,7 @@ export const BoardDetail = ({ board }) => {
                 </h3>
                 <div id='contenido'>
                     {
-                        board.tarjetas.map((item, index) => {
+                        board.tarjetas && board.tarjetas.map((item, index) => {
                             return (
                                 <Tarjeta tarjeta={item} key={index} board={board} />
                             );
