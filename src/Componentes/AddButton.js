@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormControl, FormGroup, Button } from 'react-bootstrap';
-import { addCard, addBoard, addList } from './actions';
+import { addCard, addBoard, addList } from '../actions/actions';
 
 
 class AddButton extends Component {
@@ -11,21 +11,21 @@ class AddButton extends Component {
     }
   }
   render() {
-    const { tarjeta, board, card, boardId } = this.props;
-    const funcion = tarjeta ? addList : board ? addBoard : addCard;
-    const parametro = board ? '' : tarjeta ? tarjeta : card;
+    const { list, board, card, boardId } = this.props;
+    const funcion = list ? addList : board ? addBoard : addCard;
+    const parametro = board ? '' : list ? list : card;
     const change = () => {
       this.setState({
         add: !this.state.add
       })
     }
-    const holder = tarjeta ? 'Add a New List...' : board ? 'Board Name' : '';
-    const message = tarjeta ? 'Add a New List...' : board ? 'Add new board...' : 'Add a New Card...';
+    const holder = list ? 'Add a New List...' : board ? 'Board Name' : '';
+    const message = list ? 'Add a New List...' : board ? 'Add new board...' : 'Add a New Card...';
     return (
-      <div className={tarjeta ? 'tarjeta' : ''}>
+      <div className={list ? 'tarjeta' : ''}>
         {
           this.state.add ?
-            <div className={tarjeta || board ? 'tarea' : ''}>
+            <div className={list || board ? 'tarea' : ''}>
               <form onSubmit={(e) => {
                 e.preventDefault();
                 card ? funcion(this.input.value, boardId, parametro) : funcion(this.input.value, parametro);
@@ -39,14 +39,14 @@ class AddButton extends Component {
                     required />
                 </FormGroup>
                 <div>
-                  <Button type='submit' >{tarjeta ? 'Save List' : board ? 'Create Board' : 'Add'}</Button>
+                  <Button type='submit' >{list ? 'Save List' : board ? 'Create Board' : 'Add'}</Button>
                   or <span className='cancel' onClick={change}>cancel</span>
                 </div>
               </form>
 
             </div>
             :
-            <div className={tarjeta || board ? 'tarea addNew' : 'addNew'} onClick={change}>
+            <div className={list || board ? 'tarea addNew' : 'addNew'} onClick={change}>
               {message}
             </div>
         }

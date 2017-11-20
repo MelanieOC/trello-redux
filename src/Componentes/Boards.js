@@ -1,32 +1,9 @@
 import React from 'react';
 import { Image, Grid, Row, Col, Button } from 'react-bootstrap';
-import logo from './trello-logo-white.svg';
 import AddButton from './AddButton';
 import { NavLink } from 'react-router-dom';
-import { signOut } from './actions'
+import Header from './Header';
 
-const Header = () => {
-    return (
-        <header id='titulo'>
-            <span>
-                <NavLink to='/boards'>
-                    <i class="fa fa-columns" aria-hidden="true"></i>
-                    <span> Boards</span>
-                </NavLink>
-            </span>
-            <Image src={logo} width='200px' />
-            <span>
-                <a href='#'>
-                    <span> User</span>
-                </a>
-                <NavLink to='/signin' onClick={() => signOut()}>
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    <span> Sign Out</span>
-                </NavLink>
-            </span>
-        </header>
-    );
-}
 
 export const Boards = ({ array }) => {
     return (
@@ -60,26 +37,23 @@ export const Boards = ({ array }) => {
         </div>
     );
 }
-/* <NavLink to={path}>
-                                        <div className='tarea'>
-                                            <h4>{item.name}</h4>
-                                        </div>
-                                    </NavLink> */
-const Tarjeta = ({ tarjeta, board }) => {
+
+
+const List = ({ list, board }) => {
     return (
         <div className='tarjeta'>
             <div className='tarea'>
                 {
-                    tarjeta &&
+                    list &&
                     <div>
-                        <h4>{tarjeta.card}</h4>
+                        <h4>{list.name}</h4>
                         {
-                            tarjeta.stages && tarjeta.stages.map(a => <div className='tareal'>{a}</div>)
+                            list.cards && list.cards.map(a => <div className='tareal'>{a}</div>)
                         }
                     </div>
                 }
 
-                <AddButton card={tarjeta.card} boardId={board} />
+                <AddButton card={list.name} boardId={board} />
             </div>
         </div>
     );
@@ -95,13 +69,13 @@ export const BoardDetail = ({ board }) => {
                 </h3>
                 <div id='contenido'>
                     {
-                        board.tarjetas && board.tarjetas.map((item, index) => {
+                        board.list && board.list.map((item, index) => {
                             return (
-                                <Tarjeta tarjeta={item} key={index} board={board} />
+                                <List list={item} key={index} board={board} />
                             );
                         })
                     }
-                    <AddButton tarjeta={board} />
+                    <AddButton list={board} />
                 </div>
             </Grid>
         </div>

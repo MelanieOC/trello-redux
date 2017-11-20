@@ -1,6 +1,5 @@
-import store from './store';
+import store from '../store/store';
 import firebase from 'firebase';
-import { storage } from 'firebase';
 
 // Initialize Firebase
 var config = {
@@ -36,27 +35,27 @@ export const addBoard = (value) => {
     }
     firebase.database().ref(user + '/boards/' + newBoard.id).set(newBoard).then(() => console.log('nooo'));
 }
-export const addList = (value, list) => {
+export const addList = (value, board) => {
     let user = store.getState().user;
-    let tarjetas = list.tarjetas ? list.tarjetas : [];
-    tarjetas.push({ card: value });
-    firebase.database().ref(user + '/boards/' + list.id + '/tarjetas').set(tarjetas).then(() => console.log('lol'));
+    let list = board.list ? board.list : [];
+    list.push({ name: value });
+    firebase.database().ref(user + '/boards/' + board.id + '/list').set(list).then(() => console.log('lol'));
 
 }
-export const addCard = (value, list, card) => {
+export const addCard = (value, board, list) => {
     let user = store.getState().user;
-    let newList = list.tarjetas.map(b => {
-        if (b.card === card) {
-            if (b.stages) {
-                b.stages.push(value);
+    let newList = board.list.map(b => {
+        if (b.name === list) {
+            if (b.cards) {
+                b.cards.push(value);
             } else {
-                b.stages = [value];
+                b.cards = [value];
             }
         }
         return b;
     });
 
-    firebase.database().ref(user + '/boards/' + list.id + '/tarjetas').set(newList).then(() => console.log('sip'));
+    firebase.database().ref(user + '/boards/' + board.id + '/list').set(newList).then(() => console.log('sip'));
 
 }
 export function signUp(firstName, lastName, email, pass) {

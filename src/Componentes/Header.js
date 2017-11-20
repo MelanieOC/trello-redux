@@ -1,0 +1,30 @@
+import React from 'react';
+import { Image, Grid, Row, Col, Button } from 'react-bootstrap';
+import logo from '../trello-logo-white.svg';
+import { NavLink } from 'react-router-dom';
+import { signOut } from '../actions/actions';
+
+const Header = () => {
+    return (
+        <header id='titulo'>
+            <span>
+                <NavLink to='/boards'>
+                    <i class="fa fa-columns" aria-hidden="true"></i>
+                    <span> Boards</span>
+                </NavLink>
+            </span>
+            <Image src={logo} width='200px' />
+            <span>
+                <a href='#'>
+                    <span> User</span>
+                </a>
+                <NavLink to='/signin' onClick={() => signOut()}>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <span> Sign Out</span>
+                </NavLink>
+            </span>
+        </header>
+    );
+}
+
+export default Header;

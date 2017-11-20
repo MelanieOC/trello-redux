@@ -1,7 +1,7 @@
 import React from 'react';
 import SignUp from './Componentes/SignUp.js';
 import SignIn from './Componentes/SignIn.js';
-import { Boards, BoardDetail } from './Boards';
+import { Boards, BoardDetail } from './Componentes/Boards';
 import { connect } from 'redux-zero/react';
 import './App.css';
 import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
@@ -29,8 +29,6 @@ const App = ({ boards, user }) => {
     </BrowserRouter>
   )
 }
-//<NavLink to='#'>Sign in</NavLink>
-//<BoardDetail board={data[0]} />
 
 const mapToProps = ({ boards, user }) => ({ boards, user });
 export default connect(mapToProps)(App);

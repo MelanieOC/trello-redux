@@ -3,7 +3,7 @@ import './SignUp.css';
 import logo from '../trello-logo-white.svg';
 import { FormControl, FormGroup, Image, Button } from 'react-bootstrap';
 import { NavLink, Redirect } from 'react-router-dom';
-import { signIn } from '../actions';
+import { signIn } from '../actions/actions';
 
 const SignIn = ({ user }) => {
   return (
