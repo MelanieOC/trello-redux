@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import AddButton from './AddButton';
 import { NavLink } from 'react-router-dom';
-
+import './Boards.css';
 
 export const Boards = ({ array }) => {
     return (
@@ -19,7 +19,7 @@ export const Boards = ({ array }) => {
                             return (
                                 <Col md={3} sm={3} xs={3} key={index}>
                                     <NavLink to={path}>
-                                        <div className='tarea'>
+                                        <div className='box'>
                                             <h4>{item.name}</h4>
                                         </div>
                                     </NavLink>
@@ -36,26 +36,6 @@ export const Boards = ({ array }) => {
     );
 }
 
-
-const List = ({ list, board }) => {
-    return (
-        <div className='tarjeta'>
-            <div className='tarea'>
-                {
-                    list &&
-                    <div>
-                        <h4>{list.name}</h4>
-                        {
-                            list.cards && list.cards.map(a => <div className='tareal'>{a}</div>)
-                        }
-                    </div>
-                }
-
-                <AddButton card={list.name} boardId={board} />
-            </div>
-        </div>
-    );
-}
 
 export const BoardDetail = ({ board }) => {
     return (
@@ -75,6 +55,26 @@ export const BoardDetail = ({ board }) => {
                     <AddButton list={board} />
                 </div>
             </Grid>
+        </div>
+    );
+}
+
+const List = ({ list, board }) => {
+    return (
+        <div className='list'>
+            <div className='box'>
+                {
+                    list &&
+                    <div>
+                        <h4>{list.name}</h4>
+                        {
+                            list.cards && list.cards.map(card => <div className='card'>{card}</div>)
+                        }
+                    </div>
+                }
+
+                <AddButton card={list.name} boardId={board} />
+            </div>
         </div>
     );
 }
