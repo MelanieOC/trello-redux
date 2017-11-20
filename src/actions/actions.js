@@ -66,8 +66,13 @@ export function signUp(firstName, lastName, email, pass, confirm) {
                 firstName, lastName, email, pass
             }
             firebase.database().ref('users/' + user.uid).set(newuser);
-
+            store.setState({
+                password: false
+            })
         }).catch(e => {
+            store.setState({
+                password: true
+            })
             console.log(e)
         })
     }
@@ -79,7 +84,8 @@ export function signOut() {
     store.setState({
         user: '',
         boards: [],
-        login: false
+        login: false,
+        password: false
     })
 }
 export function signIn(user, pass) {

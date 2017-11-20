@@ -8,15 +8,21 @@ class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      confirm: false
+      confirm: false,
+      show: false
     }
   }
   render() {
-    const { user } = this.props;
-    const passwordConfirm =()=>{
-      if(this.passConfirm.value===this.password.value){
+    const { user, passwordError } = this.props;
+    const passwordConfirm = () => {
+      console.log(this.state.confirm)
+      if (this.passConfirm.value === this.password.value) {
         this.setState({
-          confirm:true
+          confirm: true
+        })
+      }else{
+        this.setState({
+          confirm: false
         })
       }
     }
@@ -30,7 +36,9 @@ class SignUp extends Component {
           <form className='sign' onSubmit={
             e => {
               e.preventDefault();
-              passwordConfirm();
+              this.setState({
+                show: true
+              })
               signUp(this.firstName.value, this.lastName.value, this.email.value, this.password.value, this.state.confirm)
             }}>
             <FormGroup bsSize='large'>
@@ -43,11 +51,15 @@ class SignUp extends Component {
               <FormControl type="email" placeholder="Email" inputRef={ref => { this.email = ref; }} required />
             </FormGroup>
             <FormGroup bsSize='large'>
-              <FormControl type="password" placeholder="Password" inputRef={ref => { this.password = ref; }} required />
+              <FormControl type="password"  onChange={passwordConfirm} placeholder="Password" inputRef={ref => { this.password = ref; }} required />
             </FormGroup>
+            {passwordError && <div className='error'>should be at least 6 character(s)</div>}
             <FormGroup bsSize='large'>
-              <FormControl type="password" placeholder="Confirm password" inputRef={ref => { this.passConfirm = ref; }} required />
+              <FormControl type="password" placeholder="Confirm password"
+                inputRef={ref => { this.passConfirm = ref; }}
+                onChange={passwordConfirm} required />
             </FormGroup>
+            {this.state.show && !this.state.confirm && <div className='error'>Password does not match</div>}
             <Button type='submit' >Sign Up</Button>
           </form>
           <NavLink className='signin' to='/signin'>Sign in</NavLink>

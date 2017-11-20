@@ -3,7 +3,8 @@ import createStore from 'redux-zero';
 const initialState = {
     user:'',
     boards:[],
-    login: false
+    login: false,
+    password: false
 }
 
 const store = createStore(initialState);

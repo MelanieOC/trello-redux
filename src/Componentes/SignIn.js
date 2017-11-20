@@ -18,7 +18,7 @@ const SignIn = ({ user, login }) => {
             signIn(this.emailInput.value, this.passwordInput.value)
           }
         }>
-          <div className='error' style={{ display: login ? 'block' : 'none' }}>Invalid email or password</div>
+          {login && <div className='error'>Invalid email or password</div>}
           <FormGroup bsSize='large'>
             <FormControl type="email" placeholder="Email" required inputRef={ref => { this.emailInput = ref; }} />
           </FormGroup>

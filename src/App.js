@@ -8,13 +8,13 @@ import './App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 
-const App = ({ login, boards, user }) => {
+const App = ({ login, boards, user, password }) => {
   return (
     <BrowserRouter>
       <div>
         <Switch>
           <Route path='/signin' render={() => <SignIn user={user} login={login} />} />
-          <Route path='/signup' render={() => <SignUp user={user} />} />
+          <Route path='/signup' render={() => <SignUp user={user} passwordError={password} />} />
           <Route exact path="/boards" render={() => (
             <div>
               <Header user={user} />
@@ -41,5 +41,5 @@ const App = ({ login, boards, user }) => {
   )
 }
 
-const mapToProps = ({ login, boards, user }) => ({ login, boards, user });
+const mapToProps = ({ login, boards, user, password }) => ({ login, boards, user, password });
 export default connect(mapToProps)(App);
