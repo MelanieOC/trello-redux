@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Image, Button } from 'react-bootstrap';
 import { NavLink, Redirect } from 'react-router-dom';
 import { signIn } from '../actions/actions';
 
-const SignIn = ({ user }) => {
+const SignIn = ({ user, login }) => {
   return (
     <div align='center'>
       {
@@ -19,6 +19,7 @@ const SignIn = ({ user }) => {
             signIn(this.emailInput.value, this.passwordInput.value)
           }
         }>
+          <div className='error' style={{ display: login ? 'block' : 'none' }}>Invalid email or password</div>
           <FormGroup bsSize='large'>
             <FormControl type="email" placeholder="Email" required inputRef={ref => { this.emailInput = ref; }} />
           </FormGroup>

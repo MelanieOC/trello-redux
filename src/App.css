@@ -83,7 +83,11 @@ body {
 .cancel:hover{
   color: rgb(76, 146, 173);
 }
-
+.error{
+  color: #E21515;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
 /*Seccion contenido*/
 #contenido{
   display: flex;
@@ -146,24 +150,6 @@ body {
   margin: 15px 0;
 }
 
-/*formulario*/
-button {
-  padding: 10px;
-  margin: 0 5px;
-  background-color: #5BAE45;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.eliminar{
-  background-color: transparent;
-  width: 10px;
-  border: none;
-  padding: 0;
-  color: gray;
-}
 
 
 /*cada tarea agregada*/

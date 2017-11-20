@@ -4,7 +4,7 @@ import logo from '../trello-logo-white.svg';
 import { NavLink } from 'react-router-dom';
 import { signOut } from '../actions/actions';
 
-const Header = () => {
+const Header = ({ user }) => {
     return (
         <header id='titulo'>
             <span>
@@ -16,7 +16,7 @@ const Header = () => {
             <Image src={logo} width='200px' />
             <span>
                 <a href='#'>
-                    <span> User</span>
+                    <span> {user.name} {user.lastName}</span>
                 </a>
                 <NavLink to='/signin' onClick={() => signOut()}>
                     <i class="fa fa-sign-out" aria-hidden="true"></i>

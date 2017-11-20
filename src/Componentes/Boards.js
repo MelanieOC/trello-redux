@@ -2,13 +2,11 @@ import React from 'react';
 import { Image, Grid, Row, Col, Button } from 'react-bootstrap';
 import AddButton from './AddButton';
 import { NavLink } from 'react-router-dom';
-import Header from './Header';
 
 
 export const Boards = ({ array }) => {
     return (
         <div>
-            <Header />
             <Grid id='boards'>
                 <h3 style={{ marginTop: '60px' }}>
                     <i class="fa fa-user"></i>
@@ -62,7 +60,6 @@ const List = ({ list, board }) => {
 export const BoardDetail = ({ board }) => {
     return (
         <div>
-            <Header />
             <Grid >
                 <h3 style={{ marginTop: '60px' }}>
                     {board.name}
