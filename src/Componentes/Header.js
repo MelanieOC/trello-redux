@@ -3,11 +3,10 @@ import { Image } from 'react-bootstrap';
 import logo from '../trello-logo-white.svg';
 import { NavLink } from 'react-router-dom';
 import { signOut } from '../actions/actions';
-import './Header.css';
 
 const Header = ({ user }) => {
     return (
-        <header id='titulo'>
+        <header id='header'>
             <span>
                 <NavLink to='/boards'>
                     <i class="fa fa-columns" aria-hidden="true"></i>

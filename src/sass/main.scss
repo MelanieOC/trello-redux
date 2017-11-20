@@ -1,0 +1,17 @@
+@import '_variables.scss';
+@import '_header.scss';
+@import '_sign.scss';
+@import '_boards.scss';
+
+body {
+    background-color: $background;
+    font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+  
+.error{
+    color: $red;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}

@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from "redux-zero/react";
 import store from "./store/store";
-import {probando} from './actions/actions';
+import {auth} from './actions/actions';
 
 const Index = () => (
 	<Provider store={store}>
@@ -13,6 +13,6 @@ const Index = () => (
 	</Provider>
 );
 //readBoard();
-probando();
+auth();
 ReactDOM.render(<Index />, document.getElementById('root'));
 registerServiceWorker();

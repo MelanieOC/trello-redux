@@ -19,7 +19,6 @@ export function readBoard(user) {
             const stage = snap.val();
             stages.push(stage);
         })
-        console.log(stages);
         store.setState({
             boards: stages
         })
@@ -28,53 +27,59 @@ export function readBoard(user) {
 export const addBoard = (value) => {
     let user = store.getState().user;
     let boards = [...store.getState().boards];
-    console.log(value);
     let newBoard = {
         name: value,
         id: boards.length + '-' + value
     }
-    firebase.database().ref(user.id + '/boards/' + newBoard.id).set(newBoard).then(() => console.log('nooo'));
+    firebase.database().ref(user.id + '/boards/' + newBoard.id).set(newBoard)
+        .then(() => console.log('nooo'));
 }
 export const addList = (value, board) => {
     let user = store.getState().user;
     let list = board.list ? board.list : [];
     list.push({ name: value });
-    firebase.database().ref(user.id + '/boards/' + board.id + '/list').set(list).then(() => console.log('lol'));
+    firebase.database().ref(user.id + '/boards/' + board.id + '/list').set(list)
+        .then(() => console.log('lol'));
 
 }
 export const addCard = (value, board, list) => {
     let user = store.getState().user;
-    let newList = board.list.map(b => {
-        if (b.name === list) {
-            if (b.cards) {
-                b.cards.push(value);
+    let newList = board.list.map(item => {
+        if (item.name === list) {
+            if (item.cards) {
+                item.cards.push(value);
             } else {
-                b.cards = [value];
+                item.cards = [value];
             }
         }
-        return b;
+        return item;
     });
 
-    firebase.database().ref(user.id + '/boards/' + board.id + '/list').set(newList).then(() => console.log('sip'));
+    firebase.database().ref(user.id + '/boards/' + board.id + '/list').set(newList)
+        .then(() => console.log('sip'));
 
 }
-export function signUp(firstName, lastName, email, pass) {
-    firebase.auth().createUserWithEmailAndPassword(email, pass).then(user => {
-        let newuser = {
-            firstName, lastName, email
-        }
-        firebase.database().ref('users/' + user.uid).set(newuser);
+export function signUp(firstName, lastName, email, pass, confirm) {
+    if (confirm) {
+        firebase.auth().createUserWithEmailAndPassword(email, pass).then(user => {
+            let newuser = {
+                firstName, lastName, email, pass
+            }
+            firebase.database().ref('users/' + user.uid).set(newuser);
 
-    }).catch(e => {
-        console.log(e)
-    })
+        }).catch(e => {
+            console.log(e)
+        })
+    }
 
 }
 
 export function signOut() {
     firebase.auth().signOut();
     store.setState({
-        user: ''
+        user: '',
+        boards: [],
+        login: false
     })
 }
 export function signIn(user, pass) {
@@ -85,7 +90,7 @@ export function signIn(user, pass) {
         })
     })
 }
-export const probando = () => {
+export const auth = () => {
     firebase.auth().onAuthStateChanged(usuario => {
         if (usuario) {
             console.log('si');
@@ -98,8 +103,6 @@ export const probando = () => {
                         lastName: fullUserInfo.lastName
                     }
                 })
-                console.log('full info ', fullUserInfo);
-
             })
             readBoard('users/' + usuario.uid);
         } else {

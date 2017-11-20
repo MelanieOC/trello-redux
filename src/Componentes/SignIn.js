@@ -1,5 +1,4 @@
 import React from 'react';
-import './SignUp.css';
 import logo from '../trello-logo-white.svg';
 import { FormControl, FormGroup, Image, Button } from 'react-bootstrap';
 import { NavLink, Redirect } from 'react-router-dom';
@@ -28,7 +27,7 @@ const SignIn = ({ user, login }) => {
           </FormGroup>
           <Button type="submit">Sign In</Button>
         </form>
-        <NavLink className='hola' to='/signup'>Create a new account</NavLink>
+        <NavLink className='signin' to='/signup'>Create a new account</NavLink>
       </div>
     </div>
   );

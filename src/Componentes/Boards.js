@@ -2,7 +2,6 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import AddButton from './AddButton';
 import { NavLink } from 'react-router-dom';
-import './Boards.css';
 
 export const Boards = ({ array }) => {
     return (

@@ -1,0 +1,73 @@
+#boards {
+    h3{
+        color: $white;
+        margin-bottom: 30px;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    .box.addNew{
+        margin: 0 0.5em 1em 0.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.box{
+    width: 100%;
+    background: $background-box;
+    border-radius: 3px;
+    margin: 0 0.5em 1em 0.5em;
+    line-height: 1.75em;
+    padding: 0.75em;
+    min-height: 5em;
+    &.addNew {
+        transition: all 0.15s ease-out 0s;
+        background: rgba(0, 0, 0, 0.1);
+        color: #bdc3c7;
+        margin:0;
+    }
+}
+
+/*add button*/
+.addNew{
+    margin: -0.75em;
+    margin-top: 0.75em;
+    padding: 0.5em 0.75em;
+    color: #797a7c;
+    border-radius: 0 0 3px 3px;
+    cursor: pointer;
+    &:hover{
+        color: #696a6d;
+        background-color: rgba(200, 204, 206, 0.9);
+    }
+}
+
+.cancel{
+    color: rgb(90, 164, 194);
+    cursor: pointer;
+    &:hover{
+        color: rgb(76, 146, 173);
+    }
+}
+
+/*board detail*/
+#contenido{
+    display: flex;
+    flex-direction: row;
+}
+
+/*list*/
+.list{
+    min-width: 300px;
+    margin: 0 10px;
+}
+  
+.card{
+    background-color: white;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
