@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Grid, Row, Col, Button } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import AddButton from './AddButton';
 import { NavLink } from 'react-router-dom';
 

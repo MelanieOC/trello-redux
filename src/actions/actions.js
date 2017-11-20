@@ -65,13 +65,8 @@ export function signUp(firstName, lastName, email, pass) {
         }
         firebase.database().ref('users/' + user.uid).set(newuser);
 
-        firebase.database().ref('users/' + user.uid).once('value').then(res => {
-            const fullUserInfo = res.val();
-
-            console.log('full info ', fullUserInfo);
-
-        })
-
+    }).catch(e => {
+        console.log(e)
     })
 
 }
@@ -83,13 +78,7 @@ export function signOut() {
     })
 }
 export function signIn(user, pass) {
-    firebase.auth().signInWithEmailAndPassword(user, pass).then(userObj => {
-        console.log(userObj.uid)
-
-        firebase.database().ref('users/' + userObj.uid).once('value').then(res => {
-            const fullUserInfo = res.val();
-        })
-    }).catch(e => {
+    firebase.auth().signInWithEmailAndPassword(user, pass).catch(e => {
         console.log(e.message)
         store.setState({
             login: true

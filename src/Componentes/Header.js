@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Grid, Row, Col, Button } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import logo from '../trello-logo-white.svg';
 import { NavLink } from 'react-router-dom';
 import { signOut } from '../actions/actions';

@@ -5,7 +5,7 @@ import { Boards, BoardDetail } from './Componentes/Boards';
 import Header from './Componentes/Header';
 import { connect } from 'redux-zero/react';
 import './App.css';
-import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 
 const App = ({ login, boards, user }) => {
@@ -13,7 +13,7 @@ const App = ({ login, boards, user }) => {
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path='/signin' render={() => <SignIn user={user} login={login}/>} />
+          <Route path='/signin' render={() => <SignIn user={user} login={login} />} />
           <Route path='/signup' render={() => <SignUp user={user} />} />
           <Route exact path="/boards" render={() => (
             <div>
