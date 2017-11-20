@@ -7,13 +7,13 @@ import './App.css';
 import { BrowserRouter, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 
-const App = ({ boards }) => {
+const App = ({ boards, user }) => {
   return (
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path='/signin' component={SignIn} />
-          <Route path='/signup' component={SignUp} />
+          <Route path='/signin' render={() => <SignIn user={user} />} />
+          <Route path='/signup' render={() => <SignUp user={user} />} />
           <Route exact path="/boards" render={() => <Boards array={boards} />} />
           {
             boards && boards.map((item, index) => {
@@ -22,7 +22,7 @@ const App = ({ boards }) => {
               />
             })
           }
-          <Route render={() => <Redirect to="/signin" />} />
+          <Route render={() => <Redirect to={user ? "/boards" : "/signin"} />} />
         </Switch>
 
       </div>
@@ -32,5 +32,5 @@ const App = ({ boards }) => {
 //<NavLink to='#'>Sign in</NavLink>
 //<BoardDetail board={data[0]} />
 
-const mapToProps = ({ boards }) => ({ boards });
+const mapToProps = ({ boards, user }) => ({ boards, user });
 export default connect(mapToProps)(App);

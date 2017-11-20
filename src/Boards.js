@@ -3,6 +3,7 @@ import { Image, Grid, Row, Col, Button } from 'react-bootstrap';
 import logo from './trello-logo-white.svg';
 import AddButton from './AddButton';
 import { NavLink } from 'react-router-dom';
+import { signOut } from './actions'
 
 const Header = () => {
     return (
@@ -18,7 +19,7 @@ const Header = () => {
                 <a href='#'>
                     <span> User</span>
                 </a>
-                <NavLink to='/signin'>
+                <NavLink to='/signin' onClick={() => signOut()}>
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                     <span> Sign Out</span>
                 </NavLink>

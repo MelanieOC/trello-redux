@@ -12,10 +12,10 @@ var config = {
     messagingSenderId: "579542162339"
 };
 firebase.initializeApp(config);
-export function readBoard() {
-    let user = store.getState().user;
+
+export function readBoard(user) {
     firebase.database().ref(user + '/boards').on('value', res => {
-        let stages = []
+        let stages = [];
         res.forEach(snap => {
             const stage = snap.val();
             stages.push(stage);
@@ -59,67 +59,64 @@ export const addCard = (value, list, card) => {
     firebase.database().ref(user + '/boards/' + list.id + '/tarjetas').set(newList).then(() => console.log('sip'));
 
 }
-export function signUp (fullname, email, pass, survey, question, options) 
-{
-   console.log ('signUp' + fullname + email + pass);
+export function signUp(firstName, lastName, email, pass) {
+    //console.log ('signUp' + fullname + email + pass);
 
-   firebase.auth().createUserWithEmailAndPassword (email, pass).then ( user => {
-      let newuser = {
-         fullname, email, survey, question, options
-      }
-      firebase.database().ref ('users/' + user.uid).set (newuser);   
+    firebase.auth().createUserWithEmailAndPassword(email, pass).then(user => {
+        let newuser = {
+            firstName, lastName, email
+        }
+        firebase.database().ref('users/' + user.uid).set(newuser);
 
-     // firebase.database().ref ('users/' + user.uid + '/options').update ( 'option1, option2, option3...');   
-     //  firebase.database().ref ('users/').push (newuser);   
-      
-      firebase.database().ref ('users/' + user.uid).once ('value').then ( res => {
-         const fullUserInfo = res.val(); 
+        // firebase.database().ref ('users/' + user.uid + '/options').update ( 'option1, option2, option3...');   
+        //  firebase.database().ref ('users/').push (newuser);   
 
-         console.log ('full info ', fullUserInfo);
-         store.setState ( {
-            user: {
-               id : user.uid,
-               email :  fullUserInfo.email,
-               fullname :  fullUserInfo.fullname,
-               survey :  fullUserInfo.survey,
-               question :  fullUserInfo.question,
-               options :  fullUserInfo.options               
-            }
-         })
-      })
+        firebase.database().ref('users/' + user.uid).once('value').then(res => {
+            const fullUserInfo = res.val();
 
-   })
-   
+            console.log('full info ', fullUserInfo);
+
+        })
+
+    })
+
 }
 
-export function signOut () {
-   firebase.auth().signOut();
-   store.setState ( {
-      successLogin : false,
-      user: {
-         id :'',
-         email :  ''
-      }
-   })
+export function signOut() {
+    firebase.auth().signOut();
+    store.setState({
+        user:''
+    })
 }
 
-export function signIn (user, pass) {
-   firebase.auth().signInWithEmailAndPassword(user, pass).then (userObj => {
+export function signIn(user, pass) {
+    firebase.auth().signInWithEmailAndPassword(user, pass).then(userObj => {
+        console.log(userObj.uid)
+        store.setState({
+            user: 'users/' + userObj.uid
+        })
+        firebase.database().ref('users/' + userObj.uid).once('value').then(res => {
+            const fullUserInfo = res.val();
+            
+            console.log('full info ', fullUserInfo);
 
-      firebase.database().ref ('users/' + userObj.uid).once ('value').then ( res => {
-         const fullUserInfo = res.val(); 
 
-         console.log ('full info ', fullUserInfo);
-         store.setState ( {
-            user: {
-               id : userObj.uid,
-               email :  fullUserInfo.email,
-               fullname :  fullUserInfo.fullname,
-               survey :  fullUserInfo.survey,
-               question :  fullUserInfo.question,
-               options :  fullUserInfo.options               
-            }
-         })
-      })
-   })
+        })
+    }).catch(e => console.log(e.message))
+}
+export const probando = () => {
+    firebase.auth().onAuthStateChanged(usuario => {
+        if (usuario) {
+            console.log('si');
+            store.setState({
+                user: 'users/' + usuario.uid
+            })
+            let useru = store.getState().user;
+            console.log(useru);
+            readBoard(useru);
+
+        }else{
+            console.log('no')
+        }
+    });
 }
