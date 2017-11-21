@@ -9,12 +9,18 @@
   justify-content: space-between;
   align-items: center;
   position: fixed; }
+  @media only screen and (max-width: 500px) {
+    #header {
+      padding: 0; } }
   #header img {
     margin-top: 5px;
     height: 32px;
     width: 110px; }
+    @media only screen and (max-width: 500px) {
+      #header img {
+        width: 90px; } }
   #header a {
-    background-color: rgba(0, 124, 191, 0.452);
+    background-color: rgba(13, 155, 231, 0.452);
     text-decoration: none;
     color: white;
     border-radius: 3px;
@@ -53,6 +59,19 @@
   font-size: 1.1em;
   text-decoration: none; }
 
+/*add button*/
+.addNew {
+  margin: -0.75em;
+  margin-top: 0.75em;
+  padding: 0.5em 0.75em;
+  color: #797a7c;
+  border-radius: 0 0 3px 3px;
+  cursor: pointer; }
+  .addNew:hover {
+    color: #696a6d;
+    background-color: rgba(200, 204, 206, 0.9); }
+
+/*board*/
 #boards h3 {
   color: white;
   margin-bottom: 30px; }
@@ -78,29 +97,26 @@
     background: rgba(0, 0, 0, 0.1);
     color: #bdc3c7;
     margin: 0; }
-
-/*add button*/
-.addNew {
-  margin: -0.75em;
-  margin-top: 0.75em;
-  padding: 0.5em 0.75em;
-  color: #797a7c;
-  border-radius: 0 0 3px 3px;
-  cursor: pointer; }
-  .addNew:hover {
-    color: #696a6d;
-    background-color: rgba(200, 204, 206, 0.9); }
+    .box.addNew:hover {
+      background-color: rgba(13, 155, 231, 0.452); }
 
 .cancel {
-  color: #5aa4c2;
+  color: rgba(13, 155, 231, 0.452);
   cursor: pointer; }
   .cancel:hover {
     color: #4c92ad; }
 
 /*board detail*/
 #contenido {
-  display: flex;
-  flex-direction: row; }
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+  #contenido > div {
+    display: flex;
+    flex-direction: row; }
 
 /*list*/
 .list {
@@ -113,6 +129,44 @@
   padding: 8px;
   margin-bottom: 8px; }
 
+.loader {
+  font-size: 10px;
+  margin: 10% auto;
+  text-indent: -9999em;
+  width: 11em;
+  height: 11em;
+  border-radius: 50%;
+  background: white;
+  background: linear-gradient(to right, white 10%, rgba(255, 255, 255, 0.5) 42%);
+  position: relative;
+  animation: load 1.4s infinite linear; }
+  .loader:before {
+    width: 50%;
+    height: 50%;
+    background: white;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: ''; }
+  .loader:after {
+    background: #0079BF;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0; }
+
+@keyframes load {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 body {
   background-color: #0079BF;
   font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;

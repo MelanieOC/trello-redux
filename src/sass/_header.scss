@@ -9,10 +9,12 @@
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    @include respond-to(handhelds) { padding: 0};
     img{
         margin-top: 5px;
         height: 32px;
         width: 110px;
+        @include respond-to(handhelds) { width: 90px};
     }
     a{
         background-color: $blue;
@@ -23,7 +25,7 @@
         line-height: 1em;
         margin-left: 10px;
         span {
-            color: rgba(255, 255, 255, 0.5);
+            color: $transparent;
         }
         &:hover {
             span{

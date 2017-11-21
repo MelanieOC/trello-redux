@@ -36,6 +36,12 @@ class AddButton extends Component {
                     componentClass="textarea"
                     placeholder={holder}
                     inputRef={ref => { this.input = ref; }}
+                    onKeyDown={(e) => {
+                      if (board && e.keyCode === 13) {
+                        funcion(this.input.value, parametro);
+                        change();
+                      }
+                    }}
                     required />
                 </FormGroup>
                 <div>

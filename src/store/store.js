@@ -4,7 +4,8 @@ const initialState = {
     user:'',
     boards:[],
     login: false,
-    password: false
+    password: false,
+    loading: true
 }
 
 const store = createStore(initialState);

@@ -20,9 +20,10 @@ export function readBoard(user) {
             stages.push(stage);
         })
         store.setState({
-            boards: stages
+            boards: stages,
+            loading: false
         })
-    });
+    })
 }
 export const addBoard = (value) => {
     let user = store.getState().user;
@@ -85,7 +86,8 @@ export function signOut() {
         user: '',
         boards: [],
         login: false,
-        password: false
+        password: false,
+        loading: true
     })
 }
 export function signIn(user, pass) {

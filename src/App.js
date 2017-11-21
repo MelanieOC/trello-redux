@@ -7,8 +7,7 @@ import { connect } from 'redux-zero/react';
 import './App.css';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-
-const App = ({ login, boards, user, password }) => {
+const App = ({ login, boards, user, password, loading }) => {
   return (
     <BrowserRouter>
       <div>
@@ -18,7 +17,7 @@ const App = ({ login, boards, user, password }) => {
           <Route exact path="/boards" render={() => (
             <div>
               <Header user={user} />
-              <Boards array={boards} />
+              <Boards array={boards} loading={loading} />
             </div>
           )} />
           {
@@ -41,5 +40,5 @@ const App = ({ login, boards, user, password }) => {
   )
 }
 
-const mapToProps = ({ login, boards, user, password }) => ({ login, boards, user, password });
+const mapToProps = ({ login, boards, user, password, loading }) => ({ login, boards, user, password, loading });
 export default connect(mapToProps)(App);

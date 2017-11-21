@@ -32,5 +32,5 @@ const SignIn = ({ user, login }) => {
     </div>
   );
 }
-//<NavLink className='btn' to='/boards'>Sign In</NavLink>
+
 export default SignIn;
