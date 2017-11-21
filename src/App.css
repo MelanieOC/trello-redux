@@ -1,5 +1,6 @@
 #header {
   width: 100%;
+  z-index: 200;
   background-color: #0067A3;
   line-height: 2.7em;
   padding: 0 1.5em;
