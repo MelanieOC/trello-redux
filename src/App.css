@@ -116,7 +116,10 @@
   bottom: 0; }
   #contenido > div {
     display: flex;
-    flex-direction: row; }
+    flex-direction: row;
+    margin: 0 30px; }
+  #contenido h3 {
+    margin: 0 30px 20px; }
 
 /*list*/
 .list {
